@@ -11,6 +11,7 @@ if (window.innerHeight > window.innerWidth) {
 }
 body.appendChild(container);
 console.log("Container generated");
+
 const createGrid = (size) => {
   for (let i = 0; i < Math.pow(size, 2); i++) {
     const pixel = document.createElement("div");
@@ -21,4 +22,29 @@ const createGrid = (size) => {
     container.appendChild(pixel);
   }
 };
-createGrid(64);
+
+const random = (number) => {
+  return Math.floor(Math.random() * number);
+};
+
+const fillPixel = (selection) => {
+  if (selection.classList.contains("filled")) {
+    selection.style.opacity = `${
+      Number.parseFloat(selection.style.opacity) + 0.1
+    }`;
+  } else {
+    selection.classList.add("filled");
+    const randomColor = `rgb(${random(255)} ${random(255)} ${random(255)})`;
+    selection.style.backgroundColor = `${randomColor}`;
+    selection.style.opacity = "0.1";
+  }
+};
+
+createGrid(16);
+const pixels = document.querySelectorAll(".pixel");
+pixels.forEach((pixel) => {
+  pixel.addEventListener("mouseover", (event) => {
+    console.log(event.currentTarget);
+    fillPixel(event.currentTarget);
+  });
+});

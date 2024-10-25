@@ -8,17 +8,14 @@ body {
 .container {
   max-height: 90vh;
   max-width: 90vh;
-  background-color: aquamarine;
+  border: 1pt solid gray;
   display: flex;
   flex-wrap: wrap;
 }
 .pixel {
   box-sizing: border-box;
-  background-color: pink;
-  border: solid 1px salmon;
   flex: 1;
 }
 
-.pixel:hover {
-  background-color: blueviolet;
+.filled {
 }
