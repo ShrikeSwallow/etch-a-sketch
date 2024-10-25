@@ -12,7 +12,12 @@ if (window.innerHeight > window.innerWidth) {
 body.appendChild(container);
 console.log("Container generated");
 
+const clearGrid = () => {
+  container.innerHTML = "";
+};
+
 const createGrid = (size) => {
+  clearGrid();
   for (let i = 0; i < Math.pow(size, 2); i++) {
     const pixel = document.createElement("div");
     pixel.classList.add("pixel");
@@ -39,12 +44,33 @@ const fillPixel = (selection) => {
     selection.style.opacity = "0.1";
   }
 };
+const resetButton = document.querySelector(".reset-grid");
+const resetGrid = (size) => {
+  createGrid(size);
+};
 
-createGrid(16);
-const pixels = document.querySelectorAll(".pixel");
-pixels.forEach((pixel) => {
-  pixel.addEventListener("mouseover", (event) => {
-    console.log(event.currentTarget);
-    fillPixel(event.currentTarget);
+const render = (size) => {
+  clearGrid();
+  createGrid(size);
+  const pixels = document.querySelectorAll(".pixel");
+  pixels.forEach((pixel) => {
+    pixel.addEventListener("mouseover", (event) => {
+      console.log(event.currentTarget);
+      fillPixel(event.currentTarget);
+    });
   });
+};
+render(16);
+
+resetButton.addEventListener("click", (event) => {
+  let newSize = prompt(
+    "Please enter new size for your grid:",
+    "Min 1, Max 100"
+  );
+  if (0 < Number.parseInt(newSize) && Number.parseInt(newSize) <= 100) {
+    render(newSize);
+  } else if (newSize === null) {
+  } else {
+    alert("Wrong input! Please try again");
+  }
 });
