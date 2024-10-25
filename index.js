@@ -32,6 +32,13 @@ const random = (number) => {
   return Math.floor(Math.random() * number);
 };
 
+const bwButton = document.querySelector(".bwToggle");
+let bwToggle = false;
+
+bwButton.addEventListener("click", (event) => {
+  bwToggle = !bwToggle;
+});
+
 const fillPixel = (selection) => {
   if (selection.classList.contains("filled")) {
     selection.style.opacity = `${
@@ -40,7 +47,13 @@ const fillPixel = (selection) => {
   } else {
     selection.classList.add("filled");
     const randomColor = `rgb(${random(255)} ${random(255)} ${random(255)})`;
-    selection.style.backgroundColor = `${randomColor}`;
+    if (bwToggle) {
+      selection.style.backgroundColor = "black";
+      bwButton.textContent = "Black fill";
+    } else {
+      selection.style.backgroundColor = `${randomColor}`;
+      bwButton.textContent = "Colour fill";
+    }
     selection.style.opacity = "0.1";
   }
 };

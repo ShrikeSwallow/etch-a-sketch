@@ -17,5 +17,7 @@ body {
   flex: 1;
 }
 
-.filled {
+.controls {
+  display: flex;
+  gap: 10px;
 }
