@@ -6,8 +6,8 @@ body {
   gap: 10px;
 }
 .container {
-  width: 90vh;
-  height: 90vh;
+  max-height: 90vh;
+  max-width: 90vh;
   background-color: aquamarine;
   display: flex;
   flex-wrap: wrap;
@@ -16,4 +16,9 @@ body {
   box-sizing: border-box;
   background-color: pink;
   border: solid 1px salmon;
+  flex: 1;
+}
+
+.pixel:hover {
+  background-color: blueviolet;
 }
